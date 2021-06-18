@@ -6,7 +6,7 @@
     >
       <q-item clickable to="/pioneer" class="justify-center user-header" style="padding-top: 30px">
         <q-avatar @click="refreshPioneer">
-          <q-img src="~assets/GreenCompas.jpg"></q-img>
+          <q-img src="~assets/GreenCompas.jpeg"></q-img>
         </q-avatar>
       </q-item>
       <small><animated-number :value="totalValueUsd" :formatValue="formatToPriceUSD" :duration="duration"/></small>
