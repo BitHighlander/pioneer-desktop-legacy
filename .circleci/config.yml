@@ -29,9 +29,10 @@ jobs:
       - run:
           command: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       - run: sudo apt-get install libudev-dev libusb-dev libusb-1.0 snapd
+      - run: sudo snap install snapcraft --classic
       - run: node --version
       - run: npm i
-#      - run: npm run fix
+#     - run: npm run fix
       - run: GH_TOKEN=$GH_TOKEN npm run build-electron-publish-linux
   build-native-windows:
     executor:

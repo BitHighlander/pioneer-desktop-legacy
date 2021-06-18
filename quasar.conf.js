@@ -287,7 +287,7 @@ module.exports = function (ctx) {
       // https://www.electron.build/configuration/configuration
       // https://discuss.circleci.com/t/mac-os-app-signing-without-fastlane/27292/8
       builder: {
-        appId: 'dev.keepkey.client',
+        appId: 'dev.pioneer.client',
         afterSign:"scripts/afterSignHook.js",
         "mac": {
           "icon": "build/icon.png",
@@ -297,7 +297,7 @@ module.exports = function (ctx) {
           "entitlementsInherit": "build/entitlements.mac.plist"
         },
         protocols: {
-          "name": "keepkey-client",
+          "name": "pioneer-client",
           "schemes": [
             "invocation"
           ]

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="page-header">
-      <div><h4>KeepKey Client</h4></div>
+      <div><h4>Pioneer Platform</h4></div>
     </div>
       <q-card>
         <div v-if="!context" class="centered">
