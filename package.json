@@ -1,6 +1,6 @@
 {
   "name": "pioneer-desktop",
-  "version": "8.1.6",
+  "version": "8.1.7",
   "private": true,
   "description": "A support application for the KeepKey Hardware Wallet",
   "productName": "keepkey-client",

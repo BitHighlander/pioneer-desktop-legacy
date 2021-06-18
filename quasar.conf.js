@@ -146,9 +146,9 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: `keepkey-client`,
-        short_name: `keepkey-client`,
-        description: `A support application for the KeepKey Hardware Wallet`,
+        name: `pioneer-desktop`,
+        short_name: `Pioneer-Desktop`,
+        description: `A simple multi-chain Wallet`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
