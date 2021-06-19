@@ -1,9 +1,9 @@
 {
   "name": "pioneer-desktop",
-  "version": "8.1.7",
+  "version": "8.1.8",
   "private": true,
   "description": "A support application for the KeepKey Hardware Wallet",
-  "productName": "keepkey-client",
+  "productName": "pioneer-desktop",
   "author": "highlander <bithighlander@gmail.com>",
   "repository": {
     "url": "https://github.com/bithighlander/pioneer-desktop"
