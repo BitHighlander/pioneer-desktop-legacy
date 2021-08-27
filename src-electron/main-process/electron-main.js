@@ -27,7 +27,6 @@ let sleep = wait.sleep;
 //internal
 import {
   onStart,
-  onLogin,
   startNetwork,
   attemptPair,
   checkPioneerUrls,
@@ -217,7 +216,7 @@ app.on('activate', () => {
 
 //openLink
 ipcMain.on('openLink', async (event, data) => {
-  const tag = TAG + ' | cancelTransaction | '
+  const tag = TAG + ' | openLink | '
   try {
     log.info(tag,"data: ",data)
 

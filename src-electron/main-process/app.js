@@ -24,6 +24,7 @@ const Hardware = require("@pioneer-platform/pioneer-hardware")
 const Network = require("@pioneer-platform/pioneer-client")
 const ethCrypto = require("@pioneer-platform/eth-crypto")
 import {v4 as uuidv4} from 'uuid';
+
 //Globals
 let WALLET_INIT = false
 let WALLETS_LOADED = []
