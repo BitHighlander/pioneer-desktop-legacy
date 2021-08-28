@@ -6,8 +6,6 @@
           <div v-if="showPasswordlessOption">
             <h5>Would you like to enable encryption?</h5>
           </div>
-
-
           <div v-if="usePassword">
             <p>{{ $t("msg.create.encrypt") }}</p>
           </div>
@@ -57,6 +55,7 @@
         name: "PasswordCreate",
       data () {
         return {
+          loading: false,
           showPasswordlessOption:featurePasswordless,
           password: '',
           password2: '',
@@ -79,7 +78,7 @@
           try {
             // close password2
             this.loading = true
-            console.log(this.loading)
+            //console.log(this.loading)
 
             if(this.usePassword){
               // verify not empty
