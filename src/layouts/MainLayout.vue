@@ -117,8 +117,10 @@ export default {
       //Open connect
 
       //support partial setup exit
-      this.$q.electron.ipcRenderer.send('continueSetup', {})
-
+      // this.$q.electron.ipcRenderer.send('continueSetup', {})
+      // this.$q.electron.ipcRenderer.send('continueSetup', {})
+      // this.$q.electron.ipcRenderer.send('continueSetup', {})
+      // this.$q.electron.ipcRenderer.send('continueSetup', {})
 
     } catch (e) {
       console.error(e);
