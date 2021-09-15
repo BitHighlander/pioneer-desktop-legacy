@@ -99,7 +99,7 @@
                   let coin = coins[i]
                   coinList.push({
                     symbol:coin,
-                    icon:"https://static.coincap.io/assets/icons/svg/"+coin.toLowerCase()+".svg",
+                    icon:"https://static.coincap.io/assets/icons/"+coin.toLowerCase()+"@2x.png",
                   })
                 }
                 this.coins = coinList

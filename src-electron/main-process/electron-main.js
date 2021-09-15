@@ -94,10 +94,25 @@ let mainWindow
 // }
 
 function bringWindowToFront(){
+  let tag = " | bringWindowToFront | "
   try{
+    log.info(tag,"checkpoint! ")
+
+    log.info(tag,"mainWindow: ",mainWindow)
+    //TODO if minimized, open new window?
+    //destroy old?
+    if(!mainWindow){
+      createWindow()
+    }
+
+
+    //let result = mainWindow.open()
+    mainWindow.loadURL(process.env.APP_URL)
+    //log.info(tag,"result: ",result)
 
     //
-    mainWindow.setAlwaysOnTop(true)
+    let result2 = mainWindow.setAlwaysOnTop(true)
+    log.info(tag,"result2: ",result2)
 
   }catch(e){
     log.error(e)
@@ -361,11 +376,18 @@ let onStartMain = async function(event, data){
         case 'approve':
           break;
         case 'transfer':
+          //bring to front
+          bringWindowToFront()
+
+          //wait for load
+          await sleep(1000)
           //open invocation window
+
+          //show invocation
           event.sender.send('navigation',{ dialog: 'Invocation', action: 'open'})
           //set invocationConext to invocationId
           event.sender.send('setInvocationContext',{ invocationId:request.invocationId})
-          bringWindowToFront()
+
           break;
         case 'context':
           break;
@@ -637,3 +659,13 @@ ipcMain.on('onPairKeepkey', async (event, data) => {
   }
 })
 
+ipcMain.on('onExitInvoke', async (event, data) => {
+  const tag = TAG + ' | onExitInvoke | '
+  try {
+    //release alwaysOnTop
+    let result2 = mainWindow.setAlwaysOnTop(false)
+    log.info(tag,"result2: ",result2)
+  } catch (e) {
+    console.error(tag, e)
+  }
+})
