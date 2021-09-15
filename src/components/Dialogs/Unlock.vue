@@ -56,7 +56,8 @@
       tryLogin() {
         const password = this.password;
         //tryLogin
-        this.$q.electron.ipcRenderer.send('onLogin', {password});
+        let result = this.$q.electron.ipcRenderer.send('onUnlockWallet', {password});
+        console.log("result: renderer ",result)
       },
       close: function () {
         this.hideModal()

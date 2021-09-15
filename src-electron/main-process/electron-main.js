@@ -50,7 +50,6 @@ let featureInsecurePassword = process.env['INSECURE_PASSWORD']
 
 /*
       MenuBar
-
         - Osx
  */
 
@@ -306,7 +305,6 @@ ipcMain.on('getUsbDevices', async (event, data) => {
 
 /*
     refreshPioneer
-
  */
 
 ipcMain.on('refreshPioneer', async (event, data) => {
@@ -325,17 +323,18 @@ ipcMain.on('refreshPioneer', async (event, data) => {
 })
 
 /*
-    refreshPioneer
-
- */
+    startHardware
+*/
 
 ipcMain.on('startHardware', async (event, data) => {
   const tag = TAG + ' | startHardware | '
   try {
     log.info(tag,"Checkpoint -1")
     let resultStartHardware = await App.startHardware(event, data)
-    //TODO why this null??? :(
+
+    //write to file if doesnt exist.
     log.info(tag,"resultStartHardware: ",resultStartHardware)
+
   } catch (e) {
     console.error(tag, e)
   }
@@ -384,8 +383,15 @@ let onStartMain = async function(event, data){
 ipcMain.on('onStart', async (event, data) => {
   const tag = TAG + ' | onStart | '
   try {
-    log.info(tag,"checkpoint 0")
-    onStartMain(event, data)
+    //auto setup
+    //TODO walk through and display to user
+    let resultSetup = await App.continueSetup(event, data)
+    log.info(tag,"resultSetup: ",resultSetup)
+
+    if(resultSetup.status === 0){
+      log.info(tag,"checkpoint 0")
+      onStartMain(event, data)
+    }
 
   } catch (e) {
     console.error(tag, e)
@@ -577,10 +583,36 @@ ipcMain.on('createWallet', async (event, data) => {
   }
 })
 
+
+ipcMain.on('onUnlockWallet', async (event, data) => {
+  const tag = TAG + ' | onUnlockWallet | '
+  try {
+    //
+    log.info(tag,"onUnlockWallet: ",data)
+    let result = await App.attemptUnlock(event,data)
+    log.info(tag,"result: main",result)
+
+    if(result){
+      log.info(tag,"Success! password correct!")
+      event.sender.send('navigation',{ dialog: 'Unlock', action: 'close'})
+      event.sender.send('navigation',{ dialog: 'Startup', action: 'open'})
+      return true
+      //event success
+    }else{
+      //event invalid password!
+      //TODO error event
+      return false
+    }
+  } catch (e) {
+    console.error(tag, e)
+  }
+})
+
+
 ipcMain.on('checkDevices', async (event, data) => {
   const tag = TAG + ' | checkDevices | '
   try {
-    //
+    //checkDevices
     log.info(tag,"checkDevices: ")
 
   } catch (e) {

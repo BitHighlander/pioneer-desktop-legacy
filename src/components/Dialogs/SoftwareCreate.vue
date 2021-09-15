@@ -2,7 +2,7 @@
   <q-card class="text-center q-pb-lg q-pl-lg q-pr-lg" style="min-width:450px;">
     <q-card-section>
       <h4>Warning!</h4>
-      <p>It is NOT best practice to store ANY amounts of crypto outside a hardware wallet! </p>
+      <p>It is NOT best practice to store LARGE amounts of crypto outside a hardware wallet! </p>
       <div>
         <div v-bind:href="url">
           <small>You may purchase one here:
@@ -14,7 +14,7 @@
       <br/>
       <div>
         <p class="font-italic">
-          Continue with software wallet for Development purposes only...
+          Continue with software wallet...
         </p>
       </div>
     </q-card-section>
@@ -26,7 +26,7 @@
         color="warning"
         align="left"
         @click="openRestore"
-        label="Restore from supported software wallets"
+        label="Restore from 12 word mnemonic phrase"
         icon="account_balance_wallet"
         flat
       />

@@ -163,7 +163,7 @@
 
 <script>
   import { mapMutations, mapGetters } from 'vuex'
-  import {ipcRenderer} from "electron";
+  import { ipcRenderer } from "electron";
     export default {
       name: "HardwareConnect",
       data() {

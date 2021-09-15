@@ -9,7 +9,6 @@
 import './helpers/filters'
 import store from './store'
 
-
 export default {
   name: 'App',
   created () {
@@ -31,7 +30,7 @@ export default {
       // when we don't return anything from our
       // iconMapFn, the default Quasar icon mapping
       // takes over
-    }   
+    }
   }
 }
 </script>

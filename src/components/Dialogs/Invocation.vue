@@ -7,7 +7,7 @@
           {{invocationContext}}
         </div>
         <div class="text-center">
-          state: {{invocation.state}}
+<!--          state: {{invocation.state}}-->
         </div>
 
 
@@ -29,45 +29,46 @@
           <q-item clickable v-ripple>
             <q-item-section>
               {{context}}
-              <div>
-                <h5>sending {{invocation.invocation.coin}} to the following address. {{invocation.invocation.address}}</h5>
-              </div>
-              <q-space />
-              <small class="text-left">Source of funds: </small>
-              <q-btn-dropdown
-                push
-                glossy
-                no-caps
-                icon="account_balance_wallet"
-                :label="context.slice(0,10) + ' balance: '+assetBalanceNativeContext+' ('+assetContext+') '+assetBalanceUsdValueContext+' USD' "
-              >
-                <q-list>
-                  <div v-for="(wallet, index) in wallets" :key="index" class="q-mb-sm">
-                    <q-item clickable v-close-popup @click="onItemClick(wallet.context)">
-                      <q-item-section avatar>
-                        <q-avatar icon="account_balance_wallet" color="primary" text-color="white" />
-                      </q-item-section>
-                      <q-item-section>
-                        <q-item-label>{{wallet.context.slice(0, 10)}}</q-item-label>
-                        <q-item-label caption></q-item-label>
-                      </q-item-section>
-                      <q-item-section side>
-                        <q-icon name="info" color="amber" />
-                      </q-item-section>
-                    </q-item>
-                  </div>
-                </q-list>
-              </q-btn-dropdown>
+              {{invocation}}
+<!--              <div>-->
+<!--                <h5>sending {{invocation.network}} to the following address. {{invocation.invocation.address}}</h5>-->
+<!--              </div>-->
+<!--              <q-space />-->
+<!--              <small class="text-left">Source of funds: </small>-->
+<!--              <q-btn-dropdown-->
+<!--                push-->
+<!--                glossy-->
+<!--                no-caps-->
+<!--                icon="account_balance_wallet"-->
+<!--                :label="context.slice(0,10) + ' balance: '+assetBalanceNativeContext+' ('+assetContext+') '+assetBalanceUsdValueContext+' USD' "-->
+<!--              >-->
+<!--                <q-list>-->
+<!--                  <div v-for="(wallet, index) in wallets" :key="index" class="q-mb-sm">-->
+<!--                    <q-item clickable v-close-popup @click="onItemClick(wallet.context)">-->
+<!--                      <q-item-section avatar>-->
+<!--                        <q-avatar icon="account_balance_wallet" color="primary" text-color="white" />-->
+<!--                      </q-item-section>-->
+<!--                      <q-item-section>-->
+<!--                        <q-item-label>{{wallet.context.slice(0, 10)}}</q-item-label>-->
+<!--                        <q-item-label caption></q-item-label>-->
+<!--                      </q-item-section>-->
+<!--                      <q-item-section side>-->
+<!--                        <q-icon name="info" color="amber" />-->
+<!--                      </q-item-section>-->
+<!--                    </q-item>-->
+<!--                  </div>-->
+<!--                </q-list>-->
+<!--              </q-btn-dropdown>-->
 
-              <div>
-                Destination: {{invocation.invocation.address}}
-                <small>external</small>
-              </div>
+<!--              <div>-->
+<!--                Destination: {{invocation.invocation.address}}-->
+<!--                <small>external</small>-->
+<!--              </div>-->
 
-              <div>
-                Fee's 1 sat/byte === 1cent
+<!--              <div>-->
+<!--                Fee's 1 sat/byte === 1cent-->
 
-              </div>
+<!--              </div>-->
 
 <!--              <div>Amount Availaible: {{invocation.invocation.amount}}</div>-->
 <!--              <h5>Amount: {{invocation.invocation.amount}}</h5>-->

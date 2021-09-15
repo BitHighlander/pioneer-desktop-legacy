@@ -114,6 +114,10 @@ export default {
   mounted() {
     try {
       console.log("Main Layout Mounted!")
+
+      //start
+      this.$q.electron.ipcRenderer.send('onStart', {})
+
       //Open connect
 
       //support partial setup exit
