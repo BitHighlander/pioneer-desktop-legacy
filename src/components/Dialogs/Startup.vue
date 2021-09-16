@@ -133,6 +133,10 @@
     mounted() {
       try{
         //
+        if(!this.isStarted){
+          this.$q.electron.ipcRenderer.send('onStart', {});
+          this.isStarted = true
+        }
       }catch(e){
         console.error(e)
       }

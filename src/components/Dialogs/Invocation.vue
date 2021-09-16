@@ -17,7 +17,7 @@
       </q-card-section>
 
       <q-tabs v-model="tab" class="text-teal">
-        <q-tab label="Build" name="build" />
+<!--        <q-tab label="Build" name="build" />-->
         <q-tab label="Sign" name="sign" />
         <q-tab label="Broadcast" name="broadcast" />
       </q-tabs>
@@ -91,16 +91,24 @@
 
         <q-tab-panel name="sign">
           <div>
-            {{unsignedTx}}
+            id: {{invocation.invocationId}}
           </div>
-
-          Review fee's
-
-          Allow Recreate/adjust fee
-
-          Mark RBF if availble
-
-          Mark noBroadcast
+          <div>
+            type: {{invocation.invocation.type}}
+          </div>
+          <div>
+            network: {{invocation.invocation.network}}
+          </div>
+          <div>
+            amount: {{invocation.invocation.amount}}
+          </div>
+          <div>
+            receiver: {{invocation.invocation.address}}
+          </div>
+          <div>
+            priority: {{invocation.invocation.fee.priority}}
+          </div>
+          <div><small></small></div>
           <q-btn
             color="primary"
             @click="sign(invocationContext)"
@@ -112,19 +120,17 @@
         </q-tab-panel>
 
         <q-tab-panel name="broadcast">
-          This should be the approved* signed* broadcastable* tx
 
-          allow broadcast
+          <div>txid: {{txid}}</div>
 
-          allow recreate tx (replacement)
-          <q-btn
-            color="primary"
-            @click="broadcast(invocationContext)"
-            label="Broadcast Transaction"
-            size="lg"
-            class="font-weight-medium q-pl-md q-pr-md"
-            style="font-size:1rem;"
-          ></q-btn>
+<!--          <q-btn-->
+<!--            color="primary"-->
+<!--            @click="broadcast(invocationContext)"-->
+<!--            label="Broadcast Transaction"-->
+<!--            size="lg"-->
+<!--            class="font-weight-medium q-pl-md q-pr-md"-->
+<!--            style="font-size:1rem;"-->
+<!--          ></q-btn>-->
         </q-tab-panel>
       </q-tab-panels>
       <div>
@@ -162,7 +168,8 @@
     name: "Invocation",
     data() {
       return {
-        tab:"build",
+        tab:"sign",
+        txid: "",
         txBuilt: false,
         loading: false,
         error: false,
@@ -183,7 +190,6 @@
     },
     mounted() {
       try{
-
         ipcRenderer.on('transactionBuilt', (event, data) => {
           console.log('transactionBuilt event! ',data)
           this.unsignedTx = data.unsignedTx
@@ -193,6 +199,10 @@
           console.log('transactionSigned event! ',data)
           this.signedTx = data.signedTx
           this.tab = 'broadcast'
+        })
+        ipcRenderer.on('transactionBroadcasted', (event, data) => {
+          console.log('transactionBroadcasted event! ',data)
+          this.txid = data.saveTx.txid
         })
       }catch(e){
         console.error(e)
@@ -208,8 +218,11 @@
           this.invocationContextState = this.$store.getters['getInvocationContextState'];
           console.log("watch: this.invocationContextState: ",this.invocationContextState)
 
-          if(this.invocationContextState === 'built'){
+          if(this.invocationContextState === 'builtTx'){
             this.tab = 'sign'
+          }
+          if(this.invocationContextState === 'signedTx'){
+            this.tab = 'broadcast'
           }
 
         },
@@ -340,6 +353,7 @@
 
       },
       close: function () {
+        this.$q.electron.ipcRenderer.send('onExitInvoke', {});
         this.hideModal()
       },
       // openStartup: function () {

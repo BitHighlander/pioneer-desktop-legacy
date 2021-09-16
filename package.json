@@ -1,6 +1,6 @@
 {
   "name": "pioneer-desktop",
-  "version": "8.1.10",
+  "version": "8.1.11",
   "private": true,
   "description": "A support application for the KeepKey Hardware Wallet",
   "productName": "pioneer-desktop",
@@ -31,7 +31,7 @@
     "@pioneer-platform/eth-crypto": "latest",
     "@pioneer-platform/loggerdog": "latest",
     "@pioneer-platform/pioneer-app": "8.1.32",
-    "@pioneer-platform/pioneer-app-electron": "8.1.48",
+    "@pioneer-platform/pioneer-app-electron": "8.1.49",
     "@pioneer-platform/pioneer-client": "latest",
     "@pioneer-platform/pioneer-config": "latest",
     "@pioneer-platform/pioneer-events": "latest",

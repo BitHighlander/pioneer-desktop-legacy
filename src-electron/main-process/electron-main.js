@@ -99,12 +99,20 @@ function bringWindowToFront(){
     log.info(tag,"checkpoint! ")
 
     log.info(tag,"mainWindow: ",mainWindow)
+    if(mainWindow.currentIndex){
+      log.info("I think the window is open ")
+    } else {
+      log.info("I think the window is not open ")
+      //TODO close old, and open new... already loaded?
+      //createWindow()
+    }
     //TODO if minimized, open new window?
     //destroy old?
-    if(!mainWindow){
-      createWindow()
-    }
+    // if(!mainWindow){
+    //   createWindow()
+    // }
 
+    // createWindow()
 
     //let result = mainWindow.open()
     mainWindow.loadURL(process.env.APP_URL)
@@ -540,9 +548,15 @@ ipcMain.on('approveTransaction', async (event, data) => {
     //context
     //invocationId
     //approveWindow = null
-
+    log.info(tag,"data: ",data)
     let resultApprove = await App.approveTransaction(event, data)
     log.info(tag,"resultApprove: ",resultApprove)
+
+    let resultBroadcast = await App.broadcastTransaction(event, data)
+    log.info(tag,"resultBroadcast: ",resultBroadcast)
+
+    //push event broadcasted
+    event.sender.send('transactionBroadcasted',resultBroadcast)
 
   } catch (e) {
     console.error(tag, e)
@@ -559,6 +573,9 @@ ipcMain.on('broadcastTransaction', async (event, data) => {
 
     let resultBroadcast = await App.broadcastTransaction(event, data)
     log.info(tag,"resultBroadcast: ",resultBroadcast)
+
+    //broadcasted:
+    //event.sender.send('navigation',{ dialog: 'Startup', action: 'open'})
 
   } catch (e) {
     console.error(tag, e)

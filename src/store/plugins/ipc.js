@@ -171,12 +171,18 @@ export default store => {
   ipcRenderer.on('transactionBuilt', (event, data) => {
     console.log('transactionBuilt event! ')
     //invocation context state to sign
-    store.commit('setInvocationContextState','built')
+    store.commit('setInvocationContextState','builtTx')
   })
   ipcRenderer.on('transactionSigned', (event, data) => {
     console.log('transactionBuilt event! ',data)
     //invocation context state to broadcast
-    store.commit('setInvocationContextState','signed')
+    store.commit('setInvocationContextState','signedTx')
+  })
+  ipcRenderer.on('transactionBroadcasted', (event, data) => {
+    console.log('transactionBroadcasted event! ',data)
+    //invocation context state to broadcast
+    store.commit('setInvocationContextState','broadcastedTx')
+
   })
   ipcRenderer.on('invocations', (event, data) => {
     console.log('invocations event! ')
