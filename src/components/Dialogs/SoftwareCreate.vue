@@ -3,14 +3,6 @@
     <q-card-section>
       <h4>Warning!</h4>
       <p>It is NOT best practice to store LARGE amounts of crypto outside a hardware wallet! </p>
-      <div>
-        <div v-bind:href="url">
-          <small>You may purchase one here:
-          HERE
-        </small>
-        </div>
-
-      </div>
       <br/>
       <div>
         <p class="font-italic">
@@ -56,7 +48,7 @@
         name: "SoftwareCreate",
         data() {
           return {
-            url:"https://www.amazon.com/KeepKey-Simple-Cryptocurrency-Hardware-Wallet/dp/B0143M2A5S",
+            url:"",
             showSoftwareCreate: featureSoftwareCreate,
             showKeepkey: true,
           };

@@ -182,7 +182,6 @@ export default store => {
     console.log('transactionBroadcasted event! ',data)
     //invocation context state to broadcast
     store.commit('setInvocationContextState','broadcastedTx')
-
   })
   ipcRenderer.on('invocations', (event, data) => {
     console.log('invocations event! ')
@@ -301,6 +300,12 @@ export default store => {
       console.log('hardwareState state: data.state.state **** ', data.state.msg)
       store.commit('setKeepKeyStatus',{status:data.state.msg})
     }
+  })
+  ipcRenderer.on('failPassword', (event, data) => {
+
+    playSound('fail')
+    //event
+    console.log('event', data)
   })
   ipcRenderer.on('events', (event, data) => {
     //event

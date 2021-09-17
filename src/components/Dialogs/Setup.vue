@@ -6,7 +6,6 @@
         </q-card-section>
         <q-card-actions vertical align="center" class="q-pb-lg q-pl-md q-pr-md">
             <q-btn
-              v-if="showSoftwareCreate"
               color="green"
               flat
               @click="openCreate()"
@@ -20,7 +19,6 @@
             <q-tooltip content-class="bg-accent">Keepkey, Ledger and Trezor wallets supported</q-tooltip>
             </q-btn> -->
           <q-btn
-            v-if="showKeepkey"
             color="blue"
             @click="openConnect"
             class="full-width"
@@ -34,9 +32,12 @@
           <q-btn
             color="yellowBright"
             @click="openSoftwareCreate"
+            class="full-width"
             icon="warning"
             align="left"
-            label="I dont have a Hardware Wallet..."
+            label="restore from 12 word seed"
+            size="lg"
+            flat
           />
         </q-card-actions>
     </q-card>

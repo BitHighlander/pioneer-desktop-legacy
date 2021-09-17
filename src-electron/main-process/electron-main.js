@@ -308,6 +308,8 @@ ipcMain.on('continueSetup', async (event, data) => {
       }
     } else {
       log.error("Failed to continue setup!")
+      let resultSetup2 = await App.continueSetup(event, data)
+      log.info(tag,"resultSetup2: ",resultSetup2)
     }
 
   } catch (e) {
@@ -457,8 +459,7 @@ ipcMain.on('onTryPin', async (event, data) => {
 ipcMain.on('updateServerSelection', async (event, data) => {
   const tag = TAG + ' | updateServerSelection | '
   try {
-    //log.info(tag,"updateServerSelection",data)
-    //
+
     let result = await App.updateServerSelection(event, data)
     log.info(tag,"result",result)
 
@@ -470,8 +471,6 @@ ipcMain.on('updateServerSelection', async (event, data) => {
 ipcMain.on('checkPioneerUrls', async (event, data) => {
   const tag = TAG + ' | checkPioneerUrls | '
   try {
-    //log.info(tag,"checkPioneerUrls",data)
-    //
     let result = App.checkPioneerUrls(event, data)
     log.info(tag,"result",result)
   } catch (e) {
@@ -638,9 +637,10 @@ ipcMain.on('onUnlockWallet', async (event, data) => {
       return true
       //event success
     }else{
+      event.sender.send('failPassword',{ })
       //event invalid password!
       //TODO error event
-      return false
+      return {"error":"invalid pw"}
     }
   } catch (e) {
     console.error(tag, e)

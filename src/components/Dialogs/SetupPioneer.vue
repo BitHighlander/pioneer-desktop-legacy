@@ -7,9 +7,9 @@
     >
       <q-card-section>
         <div v-if="!pioneerLive">
-          <div>selected: {{serverSelected.name}}</div>
+          <div>selected: https://{{serverSelected.name}}</div>
           <div>live: {{selectedLive}}</div>
-          <div>ping: {{selectedPing}}</div>
+<!--          <div>ping: {{selectedPing}}</div>-->
           <br/>
 
           <div v-if="featureSelfHost">
@@ -169,7 +169,7 @@
 
           if(data.server.name === this.serverSelected.name){
             this.selectedLive = "online"
-            this.selectedPing = data.result.totalTimeSeconds
+            this.selectedPing = parseInt(data.result.totalTimeSeconds)
           }
 
           //this.pioneerLive = true

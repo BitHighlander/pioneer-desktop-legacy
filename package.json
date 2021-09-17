@@ -1,6 +1,6 @@
 {
   "name": "pioneer-desktop",
-  "version": "8.1.11",
+  "version": "8.1.12",
   "private": true,
   "description": "A support application for the KeepKey Hardware Wallet",
   "productName": "pioneer-desktop",
@@ -36,6 +36,7 @@
     "@pioneer-platform/pioneer-config": "latest",
     "@pioneer-platform/pioneer-events": "latest",
     "@pioneer-platform/pioneer-hardware": "latest",
+    "@pioneer-platform/pioneer-sdk": "8.1.39",
     "@quasar/extras": "^1.10.8",
     "animated-number-vue": "^1.0.0",
     "app-root-dir": "^1.0.2",

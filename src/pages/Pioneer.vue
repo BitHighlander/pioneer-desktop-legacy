@@ -13,7 +13,7 @@
         </div>
         <div v-if="context">
           <div class="">
-            Apps: {{apps}}
+<!--            Apps: {{apps}}-->
           </div>
           <div>
             <q-btn

@@ -34,6 +34,7 @@
 <script>
 
   import { mapMutations } from 'vuex'
+  import {ipcRenderer} from "electron";
 
   export default {
     name: 'Unlock',
@@ -46,7 +47,9 @@
     },
     mounted() {
       try{
-
+        ipcRenderer.on('failPassword', (event, data) => {
+          this.error = true
+        })
       }catch(e){
         console.error(e)
       }
