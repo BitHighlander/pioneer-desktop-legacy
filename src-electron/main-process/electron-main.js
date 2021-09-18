@@ -606,6 +606,9 @@ ipcMain.on('createWallet', async (event, data) => {
       }
       data.mnemonic = TEMP_SEED
 
+      //create temp password
+
+
       let result = await App.createWallet(event,data)
       log.info(tag,"createWallet result: ",result)
 
