@@ -1,3 +1,11 @@
+#dev
+.env
+
+#certs
+distribution.cer
+developerID_application.cer
+
+#store
 .DS_Store
 .thumbs.db
 node_modules

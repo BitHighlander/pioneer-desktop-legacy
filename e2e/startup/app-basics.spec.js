@@ -10,7 +10,8 @@ describe('Application launch', function () {
 
   beforeEach(function () {
     this.app = new Application({
-      path: './dist/electron/Packaged/mac/keepkey-client.app/Contents/MacOS/keepkey-client',
+      path: 'e2e/pioneer-desktop.app/Contents/MacOS/pioneer-desktop',
+      // path: './dist/electron/Packaged/mac/keepkey-client.app/Contents/MacOS/keepkey-client',
     })
     return this.app.start()
   })
