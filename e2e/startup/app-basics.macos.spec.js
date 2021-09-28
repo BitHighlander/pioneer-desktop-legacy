@@ -3,15 +3,13 @@ const assert = require('assert')
 const log = require("@pioneer-platform/loggerdog")()
 
 
-//TODO dectect host and run tests per OS
-
 describe('Application launch', function () {
   jest.setTimeout('30000')
 
   beforeEach(function () {
     this.app = new Application({
-      path: 'e2e/pioneer-desktop.app/Contents/MacOS/pioneer-desktop',
-      // path: './dist/electron/Packaged/mac/keepkey-client.app/Contents/MacOS/keepkey-client',
+      //path: 'e2e/pioneer-desktop.app/Contents/MacOS/pioneer-desktop',
+      path: './dist/electron/Packaged/mac/pioneer-desktop.app/Contents/MacOS/pioneer-desktop',
     })
     return this.app.start()
   })
