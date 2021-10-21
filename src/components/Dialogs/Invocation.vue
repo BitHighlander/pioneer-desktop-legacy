@@ -90,24 +90,29 @@
         </q-tab-panel>
 
         <q-tab-panel name="sign">
-          <div>
-            id: {{invocation.invocationId}}
+<!--          {{JSON.stringify(invocation)}}-->
+          <div v-if="invocation">
+            <div>
+              id: {{invocation.invocationId}}
+            <div>
+              type: {{invocation.invocation.type}}
+            </div>
+            <div>
+              network: {{invocation.invocation.network}}
+            </div>
+            <div>
+              amount: {{invocation.invocation.amount}}
+            </div>
+            <div>
+              receiver: {{invocation.invocation.address}}
+            </div>
+            <div>
+              priority: {{invocation.invocation.fee.priority}}
+            </div>
+            </div>
           </div>
-          <div>
-            type: {{invocation.invocation.type}}
-          </div>
-          <div>
-            network: {{invocation.invocation.network}}
-          </div>
-          <div>
-            amount: {{invocation.invocation.amount}}
-          </div>
-          <div>
-            receiver: {{invocation.invocation.address}}
-          </div>
-          <div>
-            priority: {{invocation.invocation.fee.priority}}
-          </div>
+
+
           <div><small></small></div>
           <q-btn
             color="primary"
@@ -120,17 +125,21 @@
         </q-tab-panel>
 
         <q-tab-panel name="broadcast">
-
-          <div>txid: {{txid}}</div>
-
-<!--          <q-btn-->
-<!--            color="primary"-->
-<!--            @click="broadcast(invocationContext)"-->
-<!--            label="Broadcast Transaction"-->
-<!--            size="lg"-->
-<!--            class="font-weight-medium q-pl-md q-pr-md"-->
-<!--            style="font-size:1rem;"-->
-<!--          ></q-btn>-->
+          <div v-if="invocation && invocation.signedTx && invocation.signedTx.txid">
+            <div>txid: {{invocation.signedTx.txid}}</div>
+          </div>
+          <div v-if="invocation && invocation.signedTx && invocation.signedTx.noBroadcast">
+            noBroadcast:{{invocation.signedTx.noBroadcast}}
+            <br/>
+            <q-btn
+              color="primary"
+              @click="broadcast(invocationContext)"
+              label="Broadcast Transaction"
+              size="lg"
+              class="font-weight-medium q-pl-md q-pr-md"
+              style="font-size:1rem;"
+            ></q-btn>
+          </div>
         </q-tab-panel>
       </q-tab-panels>
       <div>
@@ -275,6 +284,13 @@
           //get value
           this.invocationContext = this.$store.getters['getInvocationContext'];
           this.invocation = this.invocations.filter(e => e.invocationId === this.invocationContext)[0]
+
+          //
+          if(this.invocation.signedTx){
+            this.isBroadcasting = true
+            this.tab = 'broadcast'
+          }
+
         },
         immediate: true
       },
@@ -285,6 +301,12 @@
           this.invocations = this.$store.getters['getInvocations'];
           console.log("invocations: ", this.invocations)
           if(!this.invocation) this.invocation = this.invocations[0]
+
+          if(this.invocation && this.invocation.signedTx){
+            this.isBroadcasting = true
+            this.tab = 'broadcast'
+          }
+
         },
         immediate: true
       },

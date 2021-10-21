@@ -74,8 +74,8 @@
           },
           openInvocation(invocation) {
             console.log("invocationId: ",invocation)
-            console.log("invocationId: ",invocation.invocationId)
-            this.setInvocationContext(invocation.invocationId)
+            console.log("invocationId: ",invocation?.invocationId)
+            this.setInvocationContext(invocation?.invocationId)
             //set current invocation in state
             this.showModal('Invocation')
           },
